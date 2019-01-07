@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RateLimitAPI.Filters;
 
 namespace RateLimitAPI.Controllers
 {
@@ -8,6 +9,7 @@ namespace RateLimitAPI.Controllers
     {
         [HttpGet]
         [Route("{name}")]
+        [ServiceFilter(typeof(RateLimitFilter))]
         public IActionResult Get(string name)
         {
             return Ok("Hi, " + name);
