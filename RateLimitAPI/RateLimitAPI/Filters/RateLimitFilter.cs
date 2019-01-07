@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Memory;
 using RateLimitAPI.Model;
+using RateLimitAPI.Util;
 using System;
 
 namespace RateLimitAPI.Filters
@@ -36,7 +37,7 @@ namespace RateLimitAPI.Filters
                 {
                     if (ce.NumberOfRequests >= 10)
                     {
-                        context.Result = new NotFoundResult();
+                        context.Result = new TooManyRequestsResult();
                     }
                     else
                     {
@@ -47,7 +48,7 @@ namespace RateLimitAPI.Filters
             else
             {
                 InsertIntoCache(userIp);
-            }
+            }            
         }
 
         private void InsertIntoCache(long userIp)
