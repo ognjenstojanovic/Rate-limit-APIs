@@ -16,7 +16,7 @@ namespace RateLimitAPI.TestSetup
 
         public async Task Invoke(HttpContext httpContext)
         {
-            httpContext.Connection.RemoteIpAddress = fakeIpAddress;
+            httpContext.Connection.LocalIpAddress = fakeIpAddress;
 
             await this.next(httpContext);
         }

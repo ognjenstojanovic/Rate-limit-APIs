@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using RateLimitAPI.Test.Setup;
 
 namespace RateLimitAPI.TestSetup
 {
@@ -12,7 +14,7 @@ namespace RateLimitAPI.TestSetup
 
         public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMiddleware<FakeIpAddressMiddleware>();
+            app.UseMiddleware<FakeIpAddressMiddleware>();            
             base.Configure(app, env);
         }
     }
